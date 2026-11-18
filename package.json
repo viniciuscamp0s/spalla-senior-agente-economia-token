@@ -1,0 +1,39 @@
+{
+  "name": "claude-economia-de-cota",
+  "version": "1.0.0",
+  "description": "Diagnóstico semanal do consumo do Claude Code e ações seguras (com medida e desfazer) que economizam a cota da assinatura. Só Node, sem dependências, sem rede.",
+  "type": "module",
+  "bin": {
+    "claude-economia-de-cota": "bin/cli.mjs"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "ganchos/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node --test",
+    "exemplo": "node ferramentas/gerar-exemplo.mjs"
+  },
+  "engines": {
+    "node": ">=18.17"
+  },
+  "keywords": [
+    "claude-code",
+    "claude",
+    "anthropic",
+    "tokens",
+    "cota",
+    "limite",
+    "economia",
+    "hooks"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/viniciuscamp0s/claude-economia-de-cota.git"
+  },
+  "author": "Vinicius Campos"
+}

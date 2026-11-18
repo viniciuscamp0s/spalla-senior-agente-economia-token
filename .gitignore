@@ -1,0 +1,6 @@
+node_modules/
+relatorio-economia-de-cota/
+economia-de-cota.config.json
+publicar.local.json
+*.tmp
+.claude/

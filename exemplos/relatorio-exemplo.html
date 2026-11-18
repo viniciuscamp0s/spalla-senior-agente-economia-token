@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Economia de cota</title>
+<style>
+:root{--fundo:#f7f7f5;--papel:#fff;--tinta:#1c1c1a;--suave:#5f5f5a;--linha:#e3e2dd;--acento:#c2410c;--ok:#15803d;--alerta:#b91c1c;--barra:#f1e4dc}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--fundo:#151513;--papel:#1f1f1c;--tinta:#ecebe6;--suave:#a4a39c;--linha:#33332f;--acento:#fb923c;--ok:#4ade80;--alerta:#f87171;--barra:#3a2a20}}
+:root[data-theme="dark"]{--fundo:#151513;--papel:#1f1f1c;--tinta:#ecebe6;--suave:#a4a39c;--linha:#33332f;--acento:#fb923c;--ok:#4ade80;--alerta:#f87171;--barra:#3a2a20}
+*{box-sizing:border-box}body{margin:0;background:var(--fundo);color:var(--tinta);font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:32px 16px 64px}
+.exemplo{background:var(--acento);color:#fff;font-weight:700;padding:10px 14px;border-radius:8px;margin-bottom:20px}
+h1{font-size:1.6rem;line-height:1.25;margin:0 0 8px}h2{font-size:1.15rem;margin:36px 0 12px}h3{font-size:1.05rem;margin:0;flex:1}
+.manchete{font-size:1.15rem;font-weight:600;margin:12px 0}.escopo{color:var(--suave);font-size:.9rem}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:20px}
+.kpis div{background:var(--papel);border:1px solid var(--linha);border-radius:10px;padding:12px}
+.kpis span{display:block;color:var(--suave);font-size:.8rem}.kpis b{font-size:1.35rem}.kpis small{display:block;color:var(--suave);font-size:.78rem}
+.card{background:var(--papel);border:1px solid var(--linha);border-radius:12px;padding:16px;margin:12px 0}
+.card header{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.n{background:var(--tinta);color:var(--papel);border-radius:50%;width:26px;height:26px;display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.tag{font-size:.75rem;border:1px solid var(--linha);border-radius:99px;padding:2px 10px}.g-alto{border-color:var(--acento);color:var(--acento)}
+.barra{height:8px;background:var(--barra);border-radius:99px;margin:12px 0 4px;overflow:hidden}.barra i{display:block;height:100%;background:var(--acento)}
+.pct{margin:0 0 8px;color:var(--suave);font-size:.9rem}dl{margin:0}dt{font-weight:700;font-size:.85rem;margin-top:8px}dd{margin:2px 0 0}
+.fonte{color:var(--suave);font-size:.8rem;margin:10px 0 0}code{background:var(--barra);padding:1px 6px;border-radius:4px}
+.acoes{list-style:none;padding:0;margin:0}.acoes li{background:var(--papel);border:1px solid var(--linha);border-left:4px solid var(--suave);border-radius:8px;padding:10px 12px;margin:8px 0;display:grid;gap:2px}
+.acoes .t-ok{border-left-color:var(--ok)}.acoes .t-alerta{border-left-color:var(--alerta)}.acoes small{color:var(--suave)}
+footer{color:var(--suave);font-size:.8rem;margin-top:40px}
+</style></head><body><main>
+<div class="exemplo">EXEMPLO COM NÚMEROS FICTÍCIOS. Nada aqui vem de uso real.</div>
+<h1>Economia de cota do Claude Code</h1>
+<p class="escopo">2030-01-01 a 2030-01-07 · todos os projetos (exemplo)</p>
+<p class="manchete">Em 7 dias você gastou 24,8 milhões de tokens novos em 38 sessões. O maior vazamento: sessões com mais de 150 respostas, cerca de 8,6% do total.</p>
+
+    <section class="kpis">
+      <div><span>Tokens novos</span><b>24,8 milhões</b></div>
+      <div><span>Sessões</span><b>38</b><small>3.514 respostas</small></div>
+      <div><span>Reescrita depois de pausa</span><b>14,1%</b><small>uma tarefa em segundo plano terminou: 7,2% · você voltou a escrever: 3,9% · outra sessão escreveu nesta: 3%</small></div>
+      <div><span>Abertura de sessão</span><b>83 mil</b><small>mediana, tokens</small></div>
+      <div><span>Subagentes</span><b>11%</b><small>59,9% no modelo mais caro</small></div>
+    </section>
+<section><h2>Onde dá para economizar</h2>
+    <article class="card">
+      <header><span class="n">1</span><h3>Sessões com mais de 150 respostas</h3><span class="tag g-alto">ganho alto</span></header>
+      <div class="barra" role="img" aria-label="8,6% do total"><i style="width:8.6%"></i></div>
+      <p class="pct">cerca de <b>8,6%</b> do total</p>
+      <dl>
+        <dt>O que é</dt><dd>Cada resposta carrega a conversa inteira até ali. Numa sessão muito longa, cada passo custa caro, mesmo os pequenos.</dd>
+        <dt>O que achei</dt><dd>4 de 38 sessões passaram de 150 respostas e gastaram 2,1 milhões de tokens novos depois da resposta 150 (8,6% do período). A maior teve 280 respostas.</dd>
+        <dt>O que fazer</dt><dd>Uma sessão, uma entrega. Passou do limite: peça um resumo de passagem e continue numa sessão nova.</dd>
+        
+        <dt>Risco</dt><dd>Baixo. O ganho real é menor que o número bruto, porque o trabalho continuaria em outra sessão.</dd>
+      </dl>
+      <p class="fonte">De onde vem o número: Respostas únicas por transcrição principal, sem subagentes.</p>
+    </article>
+    <article class="card">
+      <header><span class="n">2</span><h3>Contexto reescrito depois de pausa de mais de 1 hora</h3><span class="tag g-alto">ganho alto</span></header>
+      <div class="barra" role="img" aria-label="6% do total"><i style="width:6.0%"></i></div>
+      <p class="pct">cerca de <b>6%</b> do total</p>
+      <dl>
+        <dt>O que é</dt><dd>O Claude guarda a conversa num cache que dura cerca de 1 hora. Se a sessão fica parada mais que isso e você (ou uma tarefa em segundo plano) a acorda, a conversa inteira entra de novo e é cobrada como nova.</dd>
+        <dt>O que achei</dt><dd>22 retomadas depois de pausa de mais de 60 min reescreveram o contexto inteiro: 3,5 milhões de tokens novos (14,1% do período). Em 20 delas, sair numa sessão nova teria sido mais barato (custo de abrir: 93 mil). O que acordou a sessão: uma tarefa em segundo plano terminou 7,2%, você voltou a escrever 3,9%, outra sessão escreveu nesta 3%.</dd>
+        <dt>O que fazer</dt><dd>Sessão grande parada há mais de 1 hora: abra uma sessão nova com um resumo do que falta, em vez de continuar na antiga. Espera longa (build, horário) em segundo plano acorda no máximo a cada 45 min.</dd>
+        <dt>O pacote faz sozinho</dt><dd>compactacao-ociosa, retomada-cara, espera-curta <code>instalar</code></dd>
+        <dt>Risco</dt><dd>Sessão nova perde o fio se o resumo for ruim; só vale acima do custo de abertura.</dd>
+      </dl>
+      <p class="fonte">De onde vem o número: Respostas com escrita de cache de 40 mil tokens ou mais logo depois de uma pausa de mais de 60 min.</p>
+    </article>
+    <article class="card">
+      <header><span class="n">3</span><h3>Subagentes rodando no modelo mais caro</h3><span class="tag g-médio">ganho médio</span></header>
+      <div class="barra" role="img" aria-label="3,3% do total"><i style="width:3.3%"></i></div>
+      <p class="pct">cerca de <b>3,3%</b> do total</p>
+      <dl>
+        <dt>O que é</dt><dd>Subagente sem modelo escolhido herda o modelo da sessão. Se você trabalha no modelo mais caro, toda busca e leitura feita por subagente sai no mais caro também.</dd>
+        <dt>O que achei</dt><dd>Subagentes gastaram 2,7 milhões de tokens novos (11% do período), 59,9% deles no modelo mais caro. Por modelo: claude-opus 1,6 milhão, claude-haiku 1,1 milhão.</dd>
+        <dt>O que fazer</dt><dd>Busca e leitura em volume num modelo barato (Haiku ou Sonnet); decisão e revisão continuam no seu modelo. O ganho estimado supõe metade do custo por token (o peso exato de cada modelo no limite não é publicado).</dd>
+        <dt>O pacote faz sozinho</dt><dd>subagente-barato <code>instalar</code></dd>
+        <dt>Risco</dt><dd>Modelo barato erra mais em leitura fina de código: use em busca e resumo.</dd>
+      </dl>
+      <p class="fonte">De onde vem o número: Transcrições em &lt;sessão&gt;/subagents/, tokens novos por modelo.</p>
+    </article>
+    <article class="card">
+      <header><span class="n">4</span><h3>Custo de abrir sessão</h3><span class="tag g-médio">ganho médio</span></header>
+      <div class="barra" role="img" aria-label="2,4% do total"><i style="width:2.4%"></i></div>
+      <p class="pct">cerca de <b>2,4%</b> do total</p>
+      <dl>
+        <dt>O que é</dt><dd>Toda sessão nova começa lendo as suas instruções (CLAUDE.md, memória, lista de skills e de ferramentas). Isso é pago de novo a cada sessão.</dd>
+        <dt>O que achei</dt><dd>38 sessões abertas; a primeira resposta de cada uma escreve 83 mil tokens (mediana), 3 milhões no total (12,1% do período).</dd>
+        <dt>O que fazer</dt><dd>Enxugar o que carrega sempre: mover explicações longas do CLAUDE.md para arquivos lidos só quando precisa, desligar servidores MCP sem uso. Cortar 20% da abertura economiza o valor estimado.</dd>
+        
+        <dt>Risco</dt><dd>Regra tirada da abertura deixa de ser seguida: corte texto repetido ou sem uso, nunca regra.</dd>
+      </dl>
+      <p class="fonte">De onde vem o número: Escrita de cache da primeira resposta de cada transcrição principal.</p>
+    </article>
+    <article class="card">
+      <header><span class="n">5</span><h3>Mesmo arquivo lido inteiro várias vezes na sessão</h3><span class="tag g-baixo">ganho baixo</span></header>
+      <div class="barra" role="img" aria-label="0,7% do total"><i style="width:1.0%"></i></div>
+      <p class="pct">cerca de <b>0,7%</b> do total</p>
+      <dl>
+        <dt>O que é</dt><dd>Ler um arquivo grande inteiro de novo, sem ele ter mudado, põe tudo no contexto outra vez.</dd>
+        <dt>O que achei</dt><dd>8 casos de arquivo lido inteiro 3 vezes ou mais na mesma sessão: cerca de 175 mil tokens de releitura. Maiores: modulo-20.ts (3x), modulo-25.ts (3x), modulo-5.ts (5x).</dd>
+        <dt>O que fazer</dt><dd>Depois da primeira leitura, peça busca por trecho (Grep com contexto, ou leitura com início e limite de linhas).</dd>
+        
+        <dt>Risco</dt><dd>Nenhum.</dd>
+      </dl>
+      <p class="fonte">De onde vem o número: Leituras sem trecho definido do mesmo caminho na mesma sessão; tokens estimados a 3.5 caracteres por token.</p>
+    </article>
+    <article class="card">
+      <header><span class="n">6</span><h3>Saídas de ferramenta acima de 30 mil caracteres</h3><span class="tag g-baixo">ganho baixo</span></header>
+      <div class="barra" role="img" aria-label="0,4% do total"><i style="width:1.0%"></i></div>
+      <p class="pct">cerca de <b>0,4%</b> do total</p>
+      <dl>
+        <dt>O que é</dt><dd>Log de teste, listagem enorme, arquivo despejado no terminal: tudo isso entra no contexto e fica lá pelo resto da sessão.</dd>
+        <dt>O que achei</dt><dd>10 saídas grandes somaram cerca de 186 mil tokens. Maiores: Bash: npm test (186 mil).</dd>
+        <dt>O que fazer</dt><dd>Filtrar a saída (head, grep, --quiet, só as linhas de erro) ou mandar a leitura em volume a um subagente barato que devolve só a conclusão. Ganho estimado: metade.</dd>
+        
+        <dt>Risco</dt><dd>Filtro errado esconde a linha do erro: filtre por padrão, não por corte cego.</dd>
+      </dl>
+      <p class="fonte">De onde vem o número: Tamanho de cada resultado de ferramenta, casado com a chamada que o pediu.</p>
+    </article></section>
+
+    <section><h2>Ações instaladas</h2><ul class="acoes"><li class="t-ok"><b>Recusa espera longa em segundo plano</b><span>funcionou e fica ligada. Antes: 8,1%, depois: 1,2%. Economia estimada: 2,1 milhões de tokens.</span><small>Métrica: reescrita depois de pausa quando uma tarefa em segundo plano termina</small></li><li class="t-ok"><b>Subagente sem modelo escolhido roda no Sonnet (busca no Haiku)</b><span>funcionou e fica ligada. Antes: 58%, depois: 19%. Economia estimada: 1,4 milhão de tokens.</span><small>Métrica: parte do modelo mais caro nos tokens de subagente</small></li><li class="t-alerta"><b>Aviso antes de acordar sessão grande parada há mais de 1 hora</b><span>não ajudou e foi desligada. Antes: 3%, depois: 3,1%.</span><small>Métrica: reescrita depois de pausa quando você volta</small></li><li class="t-neutro"><b>Compactação ociosa a partir de 100 mil tokens</b><span>medindo (precisa de 7 dias inteiros depois de instalar). Antes: 5%.</span><small>Métrica: reescrita depois de pausa quando você volta ou outra sessão escreve</small></li></ul></section>
+<footer>Tokens novos = entrada + saída + escrita de cache: é o que pesa no limite da assinatura (reler o cache quase não pesa). Gerado em 2030-01-08 (exemplo) por claude-economia-de-cota, lido só nesta máquina.</footer>
+</main></body></html>
