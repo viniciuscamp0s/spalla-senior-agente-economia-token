@@ -1,4 +1,4 @@
-# claude-economia-de-cota
+# spalla-senior-agente-economia-token
 
 > **English summary.** A zero-dependency Node tool for people who keep hitting the Claude Code usage limit. It reads
 > the Claude Code transcripts already on your machine (`~/.claude/projects`), measures where your *new* tokens go
@@ -41,7 +41,7 @@ Precisa de [Node.js](https://nodejs.org) e do Git instalados. Rode no terminal, 
 **1. Veja o diagnóstico** (só leitura, não muda nada):
 
 ```bash
-npx github:viniciuscamp0s/claude-economia-de-cota diagnostico --abrir
+npx github:viniciuscamp0s/spalla-senior-agente-economia-token diagnostico --abrir
 ```
 
 Mede os últimos 7 dias de todos os seus projetos e abre o relatório no navegador. Os arquivos ficam em
@@ -50,7 +50,7 @@ Mede os últimos 7 dias de todos os seus projetos e abre o relatório no navegad
 **2. Ligue as correções neste projeto:**
 
 ```bash
-npx github:viniciuscamp0s/claude-economia-de-cota instalar
+npx github:viniciuscamp0s/spalla-senior-agente-economia-token instalar
 ```
 
 Grava em `.claude/settings.local.json` do projeto (só você, só este projeto: nunca na configuração global sem você
@@ -59,17 +59,17 @@ pedir) e guarda a medida de antes de cada ação. Vale para as sessões abertas 
 **3. Uma semana depois (8 dias), deixe ele decidir:**
 
 ```bash
-npx github:viniciuscamp0s/claude-economia-de-cota semanal
+npx github:viniciuscamp0s/spalla-senior-agente-economia-token semanal
 ```
 
 Compara a semana que fechou com a medida de antes. O que economizou 5% ou mais fica; o que não economizou é
 desligado na hora. O relatório da semana fica em `.claude/economia-de-cota/relatorios/`.
 
-Para tirar tudo: `npx github:viniciuscamp0s/claude-economia-de-cota desinstalar`. As suas outras configurações e
+Para tirar tudo: `npx github:viniciuscamp0s/spalla-senior-agente-economia-token desinstalar`. As suas outras configurações e
 variáveis voltam exatamente como eram.
 
-> Prefere sem `npx`? `git clone https://github.com/viniciuscamp0s/claude-economia-de-cota` e troque
-> `npx github:viniciuscamp0s/claude-economia-de-cota` por `node <pasta-do-clone>/bin/cli.mjs`.
+> Prefere sem `npx`? `git clone https://github.com/viniciuscamp0s/spalla-senior-agente-economia-token` e troque
+> `npx github:viniciuscamp0s/spalla-senior-agente-economia-token` por `node <pasta-do-clone>/bin/cli.mjs`.
 
 ## O que ele mede
 
@@ -155,13 +155,13 @@ acoes         lista as ações do catálogo
 macOS e Linux (`crontab -e`), toda segunda às 9h:
 
 ```cron
-0 9 * * 1 cd /caminho/do/projeto && npx -y github:viniciuscamp0s/claude-economia-de-cota semanal
+0 9 * * 1 cd /caminho/do/projeto && npx -y github:viniciuscamp0s/spalla-senior-agente-economia-token semanal
 ```
 
 Windows (Agendador de Tarefas, num terminal):
 
 ```powershell
-schtasks /Create /SC WEEKLY /D MON /ST 09:00 /TN "Economia de cota" /TR "cmd /c cd /d C:\caminho\do\projeto && npx -y github:viniciuscamp0s/claude-economia-de-cota semanal"
+schtasks /Create /SC WEEKLY /D MON /ST 09:00 /TN "Economia de cota" /TR "cmd /c cd /d C:\caminho\do\projeto && npx -y github:viniciuscamp0s/spalla-senior-agente-economia-token semanal"
 ```
 
 ## Configuração (opcional)
